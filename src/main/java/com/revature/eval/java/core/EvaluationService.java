@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public class EvaluationService {
-
+// QUESTION-----------------------------------------------------------------------------------
 	/**
 	 * 1.A Speed Converter - Convert to MilesPerHour
 	 * 
@@ -46,11 +46,17 @@ public class EvaluationService {
 		 * Value"
 		 */
 		public static String printConversion(double kilometersPerHour) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			// use speed converter for kph
+			double mph = toMilesPerHour(kilometersPerHour);
+			
+			// if the speed converter returns -1 return "Invalid Value"
+			if(mph < 0) {return "Invalid Value";}
+			
+			// print the format "XX km/h = YY mi/h"
+			return kilometersPerHour + " km/h = " + String.format("%.0f", mph) + " mi/h";
 		}
 	}
-
+// QUESTION-----------------------------------------------------------------------------------
 	/**
 	 * 2. MegaBytes and KiloBytes
 	 * 
@@ -75,6 +81,7 @@ public class EvaluationService {
 		// TODO Write an implementation for this method declaration
 		return null;
 	}
+// QUESTION-----------------------------------------------------------------------------------
 
 	/**
 	 * 3. Barking Dog
@@ -99,7 +106,7 @@ public class EvaluationService {
 		// TODO Write an implementation for this method declaration
 		return false;
 	}
-
+// QUESTION-----------------------------------------------------------------------------------
 	/**
 	 * 4. DecimalComparator
 	 * 
@@ -115,7 +122,7 @@ public class EvaluationService {
 		// TODO Write an implementation for this method declaration
 		return false;
 	}
-
+// QUESTION-----------------------------------------------------------------------------------
 	/**
 	 * 5. Teen Number Checker
 	 * 
@@ -141,7 +148,7 @@ public class EvaluationService {
 			return false;
 		}
 	}
-
+// QUESTION-----------------------------------------------------------------------------------
 	/**
 	 * 6. Minutes To Years and Days Calculator
 	 * 
@@ -161,7 +168,7 @@ public class EvaluationService {
 		// TODO Write an implementation for this method declaration
 		return null;
 	}
-
+// QUESTION-----------------------------------------------------------------------------------
 	/**
 	 * 7. Number In Word
 	 * 
@@ -175,7 +182,7 @@ public class EvaluationService {
 		// TODO Write an implementation for this method declaration
 		return null;
 	}
-
+// QUESTION-----------------------------------------------------------------------------------
 	/**
 	 * 8. Greatest Common Divisor
 	 * 
@@ -199,7 +206,7 @@ public class EvaluationService {
 		// TODO Write an implementation for this method declaration
 		return 0;
 	}
-
+// QUESTION-----------------------------------------------------------------------------------
 	/**
 	 * 9. First and Last Digit Sum
 	 * 
@@ -217,7 +224,7 @@ public class EvaluationService {
 		// TODO Write an implementation for this method declaration
 		return 0;
 	}
-
+// QUESTION-----------------------------------------------------------------------------------
 	/**
 	 * 10. Reverse String
 	 * 
@@ -228,7 +235,7 @@ public class EvaluationService {
 		// TODO Write an implementation for this method declaration
 		return null;
 	}
-
+// QUESTION-----------------------------------------------------------------------------------
 	/**
 	 * 11. Acronyms
 	 * 
@@ -240,7 +247,7 @@ public class EvaluationService {
 		// TODO Write an implementation for this method declaration
 		return null;
 	}
-
+// QUESTION-----------------------------------------------------------------------------------
 	/**
 	 * 12. Triangles
 	 * 
@@ -308,7 +315,7 @@ public class EvaluationService {
 		}
 
 	}
-
+// QUESTION-----------------------------------------------------------------------------------
 	/**
 	 * 13. Scrabble Score
 	 * 
@@ -327,7 +334,7 @@ public class EvaluationService {
 		// TODO Write an implementation for this method declaration
 		return 0;
 	}
-
+// QUESTION-----------------------------------------------------------------------------------
 	/**
 	 * 14. Clean the Phone Number
 	 * 
@@ -364,7 +371,7 @@ public class EvaluationService {
 	public String cleanPhoneNumber(String string) {
 		return null;
 	}
-
+// QUESTION-----------------------------------------------------------------------------------
 	/**
 	 * 15. Recurring Word Counter
 	 * 
@@ -377,7 +384,7 @@ public class EvaluationService {
 		// TODO Write an implementation for this method declaration
 		return null;
 	}
-
+// QUESTION-----------------------------------------------------------------------------------
 	/**
 	 * 16. Armstrong Number
 	 * 
@@ -395,7 +402,7 @@ public class EvaluationService {
 	public boolean isArmstrongNumber(int input) {
 		return false;
 	}
-
+// QUESTION-----------------------------------------------------------------------------------
 	/**
 	 * 17. Prime Factors
 	 * 
@@ -408,7 +415,7 @@ public class EvaluationService {
 		// TODO Write an implementation for this method declaration
 		return null;
 	}
-
+// QUESTION-----------------------------------------------------------------------------------
 	/**
 	 * 18. Calculate Nth Prime
 	 * 
@@ -424,7 +431,7 @@ public class EvaluationService {
 		// TODO Write an implementation for this method declaration
 		return 0;
 	}
-
+// QUESTION-----------------------------------------------------------------------------------
 	/**
 	 * 19. Pangram
 	 * 
@@ -441,7 +448,7 @@ public class EvaluationService {
 		// TODO Write an implementation for this method declaration
 		return false;
 	}
-
+// QUESTION-----------------------------------------------------------------------------------
 	/**
 	 * 20. Sum of Multiples 
 	 * 
@@ -456,7 +463,7 @@ public class EvaluationService {
 	public int getSumOfMultiples(int i, int[] set) {
 		return 0;
 	}
-	
+// QUESTION-----------------------------------------------------------------------------------
 	/**
 	 * 21. Three Magic Numbers
 	 * 
@@ -470,7 +477,7 @@ public class EvaluationService {
 	public int[] threeLuckyNumbers() {
 		return null;
 	}
-	
+// QUESTION-----------------------------------------------------------------------------------
 	/*
 	 * 22. Easy Guessing Game
 	 * 
