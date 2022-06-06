@@ -1,5 +1,11 @@
 package com.revature.eval.java.core;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -78,8 +84,16 @@ public class EvaluationService {
 	 * Value".
 	 */
 	public String printMegaBytesAndKiloBytes(int XX) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		
+		// if the amount of kilobytes is less than 0 return "Invalid Value"
+		if(XX < 0) {return "Invalid Value";}
+		
+		// calculate megabytes and remaining kilobytes % 1 mb = 1000 kb
+		int mb = XX / 1024;
+		int kbRemain = XX % 1024;
+		
+		// return a string "XX KB = YY MB and ZZ KB
+		return XX + " KB = " + mb + " MB and " + kbRemain + " KB";
 	}
 // QUESTION-----------------------------------------------------------------------------------
 
@@ -103,7 +117,11 @@ public class EvaluationService {
 	 * If the hourOfDay parameter is less than 0 or greater than 23, return false.
 	 */
 	public boolean shouldWakeUp(boolean isBarking, int hourOfDay) {
-		// TODO Write an implementation for this method declaration
+		if(isBarking) {
+			if((hourOfDay < 8 || hourOfDay > 22) && (hourOfDay > 0 && hourOfDay < 24)) {
+				return true;
+			}
+		}
 		return false;
 	}
 // QUESTION-----------------------------------------------------------------------------------
@@ -119,7 +137,18 @@ public class EvaluationService {
 	 * Otherwise, return false;
 	 */
 	public boolean areEqualByThreeDecimalPlaces(double firstNum, double secondNum) {
-		// TODO Write an implementation for this method declaration
+		double fNum;
+		double sNum;
+		//get the first 3 of each decimal
+		DecimalFormat df = new DecimalFormat("#.###"); // sets the format to 3 decimal places
+		df.setRoundingMode(RoundingMode.DOWN); // rounds them down
+		String dx = df.format(firstNum); // sets the formatting of a decimal by turning it into a string
+		fNum = Double.valueOf(dx); // back to a double from a string
+		dx = df.format(secondNum);
+		sNum = Double.valueOf(dx);
+		
+		// compare if they are the same if they are the same return true
+		if(fNum == sNum) return true;
 		return false;
 	}
 // QUESTION-----------------------------------------------------------------------------------
@@ -136,7 +165,11 @@ public class EvaluationService {
 	static class TeenNumberChecker {
 
 		public static boolean hasTeen(int x, int y, int z) {
-			// TODO Write an implementation for this method declaration
+			
+			if(isTeen(x)) {return true;}
+			else if(isTeen(y)) {return true;}
+			else if(isTeen(z)) {return true;}
+			
 			return false;
 		}
 
@@ -144,7 +177,7 @@ public class EvaluationService {
 		// Then pass the parameter to hasTeen method
 
 		public static boolean isTeen(int number) {
-			// TODO Write an implementation for this method declaration
+			if(number > 12 && number < 20) {return true;}
 			return false;
 		}
 	}
@@ -165,8 +198,15 @@ public class EvaluationService {
 	 * ZZ represents the calculated days.
 	 */
 	public String printYearsAndDays(long minutes) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		if(minutes < 0) {System.out.println("Invalid Value");}
+		int YY, DD;
+		// calculate years and days, days first then years = days / 365, one day = 1440 minuts
+		DD = (int)minutes / 1440;
+		YY = DD / 365;
+		DD = DD % 365;
+		
+		// output the information in the proper formatting
+		return (minutes + " min = " + YY + " y and " + DD + " d");
 	}
 // QUESTION-----------------------------------------------------------------------------------
 	/**
@@ -179,8 +219,52 @@ public class EvaluationService {
 	 * statement or switch statement whatever is easier for you.
 	 */
 	public String printNumberInWord(int number) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		switch(number) {
+			case 0:
+			{
+				return "ZERO";
+			}
+			case 1:
+			{
+				return "ONE";
+			}
+			case 2:
+			{
+				return "TWO";
+			}
+			case 3:
+			{
+				return "THREE";
+			}
+			case 4:
+			{
+				return "FOUR";
+			}
+			case 5:
+			{
+				return "FIVE";
+			}
+			case 6:
+			{
+				return "SIX";
+			}
+			case 7:
+			{
+				return "SEVEN";
+			}
+			case 8:
+			{
+				return "EIGHT";
+			}
+			case 9:
+			{
+				return "NINE";
+			}
+			default:
+			{
+				return "OTHER";
+			}
+		}
 	}
 // QUESTION-----------------------------------------------------------------------------------
 	/**
@@ -203,8 +287,24 @@ public class EvaluationService {
 	 * and there is no resulting remainder.
 	 */
 	public int getGreatestCommonDivisor(int first, int second) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		if(first < 10 || second < 10) {return -1;}
+		
+		int lowest;
+		if(first < second) {
+			lowest = first;
+		}
+		else {
+			lowest = second;
+		}
+		
+		int GCD = 0;
+		for(int i = 1; i < lowest; i++){
+			if(first % i == 0 && second % i == 0) {
+				GCD = i;
+			}
+		}
+		
+		return GCD;
 	}
 // QUESTION-----------------------------------------------------------------------------------
 	/**
@@ -221,8 +321,23 @@ public class EvaluationService {
 	 * invalid value.
 	 */
 	public int sumFirstAndLastDigit(int num) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		int first = 0;
+		int last, result;
+		// get the last digit
+		last = num % 10;
+		
+		// go through each number in num mod out 10 to see if it is the first number or not
+		while(num != 0) {
+			first = num % 10;
+			num /= 10;
+		}
+		result = first + last;
+		if(result < 0) {
+			return -1;
+		}
+		else {
+			return result;
+		}
 	}
 // QUESTION-----------------------------------------------------------------------------------
 	/**
@@ -231,9 +346,12 @@ public class EvaluationService {
 	 * Without using the StringBuilder or StringBuffer class, write a method that
 	 * reverses a String. Example: reverse("example"); -> "elpmaxe"
 	 */
-	public String reverse(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+	public String reverse(String string) {;
+		String reversed = "";
+		for(int i = 0; i < string.length(); i++) {
+			reversed += (string.charAt((string.length() - 1) - i));
+		}
+		return reversed;
 	}
 // QUESTION-----------------------------------------------------------------------------------
 	/**
@@ -244,8 +362,16 @@ public class EvaluationService {
 	 * long name like Portable Network Graphics to its acronym (PNG).
 	 */
 	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		String acro = "" + phrase.charAt(0);
+		for(int i = 1; i < phrase.length(); i++)
+		{
+			if(phrase.charAt(i - 1) == ' ' || phrase.charAt(i - 1) == '-') {
+				char charToAdd = Character.toUpperCase(phrase.charAt(i));
+				acro += charToAdd;
+			}
+		}
+		// check if the letter is the first letter
+		return acro;
 	}
 // QUESTION-----------------------------------------------------------------------------------
 	/**
@@ -300,18 +426,21 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
+			
+			if(sideOne == sideTwo && sideTwo == sideThree) {return true;}
 			return false;
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
+			
+			if(sideOne == sideTwo || sideTwo == sideThree || sideOne == sideThree) {return true;}
 			return false;
 		}
 
 		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			if(isEquilateral() || isIsosceles()) {return false;}
+			
+			return true;
 		}
 
 	}
@@ -331,8 +460,20 @@ public class EvaluationService {
 	 * 3 + 2*1 + 2*3 + 2 + 1 = 3 + 2 + 6 + 3 = 5 + 9 = 14
 	 */
 	public int getScrabbleScore(String string) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		
+		int total = 0;
+		for(int i = 0; i < string.length(); i++) {
+			switch(Character.toUpperCase(string.charAt(i))) {
+			case 'A': case 'E': case 'I': case 'O': case 'U': case 'L': case 'N': case 'R': case 'S': case 'T': {total += 1; break;}
+			case 'D': case 'G': {total += 2; break;}
+			case 'B': case 'C': case 'M': case 'P': {total += 3; break;}
+			case 'F': case 'H': case 'V': case 'W': case 'Y': {total += 4; break;}
+			case 'K': {total += 5; break;}
+			case 'J': case 'X': {total += 8; break;}
+			case 'Q': case 'Z': {total += 10; break;}
+			}
+		}
+		return total;
 	}
 // QUESTION-----------------------------------------------------------------------------------
 	/**
@@ -369,7 +510,19 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		return null;
+		int i = 0;
+		if(string.charAt(0) == '+') {
+			i = 3;
+		}
+		String cleaned = "";
+		
+		for(; i < string.length(); i++) {
+			if(Character.isDigit(string.charAt(i))) {
+				cleaned += string.charAt(i);
+			}
+		}
+		if(cleaned.length() == 10) {return cleaned;}
+		throw new IllegalArgumentException();
 	}
 // QUESTION-----------------------------------------------------------------------------------
 	/**
@@ -381,8 +534,13 @@ public class EvaluationService {
 	 * free: 1
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		Map<String, Integer> words = new HashMap<String, Integer>();
+		
+		// get each of the substrings
+			// if the substring is already in the map add to the integer
+		
+		
+		return words;
 	}
 // QUESTION-----------------------------------------------------------------------------------
 	/**
@@ -400,6 +558,29 @@ public class EvaluationService {
 	 * a number is an Armstrong number.
 	 */
 	public boolean isArmstrongNumber(int input) {
+		int amount = 0;
+		List<Integer> nums = new ArrayList<Integer>();
+		List<Integer> numsTwo = new ArrayList<Integer>();
+		int i = 0;
+		
+		while(input > 0) {
+			int numToAdd = input % 10;
+			nums.add(numToAdd);
+			input /= 10;
+			i++;
+		}
+		
+		for(i = 0; i < nums.size(); i++) {
+			if(!numsTwo.contains(nums.indexOf(i))) {
+				numsTwo.add(nums.indexOf(i));
+			}
+		}
+		
+		for(Integer k : numsTwo) {
+			amount += Math.pow(k, Collections.frequency(nums, k));
+		}
+		
+		
 		return false;
 	}
 // QUESTION-----------------------------------------------------------------------------------

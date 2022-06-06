@@ -1,31 +1,41 @@
 package com.revature.eval.java.core;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Tester {
 
 	public static void main(String[] args) {
-		double mph = toMilesPerHour(1.06934);
-		
-		System.out.println(printConversion(1.5));
+		System.out.println(isArmstrongNumber(5));
 	}
-
-	public static long toMilesPerHour(double kilometersPerHour) {
-		// check the kph
+	public static boolean isArmstrongNumber(int input) {
+		int amount = 0;
+		int inputHolder = input;
+		List<Integer> nums = new ArrayList<Integer>();
+		List<Integer> numsTwo = new ArrayList<Integer>();
+		int i = 0;
 		
-		// if less than 0 return -1
-		if(kilometersPerHour < 0) {return -1;}
+		while(input > 0) {
+			int numToAdd = input % 10;
+			nums.add(numToAdd);
+			input /= 10;
+			i++;
+		}
 		
-		// kph to mph = kph / 1.609
-		return Math.round(kilometersPerHour / 1.609);
-	}
-	
-	public static String printConversion(double kilometersPerHour) {
-		// use speed converter for kph
-		double mph = toMilesPerHour(kilometersPerHour);
+		for(i = 0; i < nums.size(); i++) {
+			if(!numsTwo.contains(nums.get(i))) {
+				numsTwo.add(nums.get(i));
+			}
+		}
+		System.out.println(numsTwo.toString());
 		
-		// if the speed converter returns -1 return "Invalid Value"
-		if(mph < 0) {return "Invalid Value";}
+		for(Integer k : numsTwo) {
+			amount += Math.pow(k, nums.size());
+			System.out.println(amount);
+		}
+		if(amount == inputHolder) {return true;}
 		
-		// print the format "XX km/h = YY mi/h"
-		return kilometersPerHour + " km/h = " + String.format("%.0f", mph) + " mi/h";
+		return false;
 	}
 }
