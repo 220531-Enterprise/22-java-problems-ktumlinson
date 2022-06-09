@@ -3,11 +3,10 @@ package com.revature.eval.java.core;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class EvaluationService {
 // QUESTION-----------------------------------------------------------------------------------
@@ -709,8 +708,17 @@ public class EvaluationService {
 	 * insensitive. Input will not contain non-ASCII symbols.
 	 */
 	public boolean isPangram(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		for(int i = 97; i < 123; i++) {
+			char check = (char)i;
+			// check if lowercase is there
+			if(string.indexOf(check) != -1) {
+				continue;				
+			} else if(string.indexOf(check - 32) != -1) {
+				continue;
+			}
+			return false;
+		}
+		return true;
 	}
 // QUESTION-----------------------------------------------------------------------------------
 	/**
@@ -725,7 +733,19 @@ public class EvaluationService {
 	 * The sum of these multiples is 78.
 	 */
 	public int getSumOfMultiples(int i, int[] set) {
-		return 0;
+		int total = 0;
+		// for all the numbers up to the max
+		for(int j = 1; j < i; j++) {
+			// cycle through the sets
+			for(int k = 0; k < set.length; k++) {
+				if(j % set[k] == 0) {
+					total += j;
+					System.out.println("Total after adding " + j + " : " + total);
+					break;
+				}
+			}
+		}
+		return total;
 	}
 // QUESTION-----------------------------------------------------------------------------------
 	/**
@@ -739,7 +759,13 @@ public class EvaluationService {
 	 */
 	
 	public int[] threeLuckyNumbers() {
-		return null;
+		int[] numbers = new int[3];
+		
+		for(int i = 0; i < 3; i++) {
+			Random r = new Random();
+			numbers[i] = r.nextInt(1, 101);
+		}
+		return numbers;
 	}
 // QUESTION-----------------------------------------------------------------------------------
 	/*
@@ -753,6 +779,7 @@ public class EvaluationService {
 	 */
 	
 	public int guessingGame(int x, int y) {
-		return 0;
+		Random r = new Random();
+		return r.nextInt(x, y+1);
 	}
 }

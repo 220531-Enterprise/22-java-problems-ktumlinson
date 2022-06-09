@@ -8,37 +8,22 @@ import java.util.Map;
 public class Tester {
 
 	public static void main(String[] args) {
-		System.out.println(calculateNthPrime(10001));
+		int[] set = {3, 5};
+		System.out.println(getSumOfMultiples(20, set));
 	}
-	public static int calculateNthPrime(int k) {
-		if(k < 1)
-		{
-			throw new IllegalArgumentException();
-		}
-		// set value to the first prime
-		int thePrime = 2;
-		
-		// find each prime after 2
-		for(int i = 1; i < k; i++) {
-			int counter = thePrime + 1;
-			while(true) {
-				// find the next prime
-				if(isPrime(counter)) {
-					thePrime = counter;
+	public static int getSumOfMultiples(int i, int[] set) {
+		int total = 0;
+		// for all the numbers up to the max
+		for(int j = 1; j < i; j++) {
+			// cycle through the sets
+			for(int k = 0; k < set.length; k++) {
+				if(j % set[k] == 0) {
+					total += j;
+					System.out.println("Total after adding " + j + " : " + total);
 					break;
 				}
-				counter++;
 			}
 		}
-		return thePrime;
-	}
-	
-	public static boolean isPrime(int num) {
-		for(int i = 2; i < num; i++) {
-			if(num % i == 0) {
-				return false;
-			}
-		}
-		return true;
+		return total;
 	}
 }
