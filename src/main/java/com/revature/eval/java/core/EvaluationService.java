@@ -540,7 +540,7 @@ public class EvaluationService {
 		String toAdd = "";
 		
 		if(string.contains("\n")) {
-			string = string.replaceAll(",\n", " ");
+			string = string.replaceAll("\n", "");
 		}
 		System.out.println(string);
 		
@@ -614,7 +614,6 @@ public class EvaluationService {
 		
 		for(Integer k : nums) {
 			amount += Math.pow(k, nums.size());
-			System.out.println(amount);
 		}
 		if(amount == inputHolder) {return true;}
 		
@@ -630,9 +629,29 @@ public class EvaluationService {
 	 * Note that 1 is not a prime number.
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		List<Long> primes = new ArrayList<Long>();
+		
+		// get all numbers that are even and make it a 2 beause they are divisible by 2
+		while(l % 2 == 0) {
+			primes.add(2l);
+			l /= 2;
+		}
+		
+		// get all odd numbers that are primes
+		for(long i = 3; i <= l; i++) {
+			while(l % i == 0) {
+				primes.add(i);
+				l /= i;
+			}
+		}
+		
+		// make sure if there is still a number you add it
+		if(l > 2) {
+			primes.add(l);
+		}
+		return primes;
 	}
+	
 // QUESTION-----------------------------------------------------------------------------------
 	/**
 	 * 18. Calculate Nth Prime
@@ -646,8 +665,35 @@ public class EvaluationService {
 	 * numbers, pretend they don't exist and implement them yourself.
 	 */
 	public int calculateNthPrime(int k) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		if(k < 1)
+		{
+			throw new IllegalArgumentException();
+		}
+		// set value to the first prime
+		int thePrime = 2;
+		
+		// find each prime after 2
+		for(int i = 1; i < k; i++) {
+			int counter = thePrime + 1;
+			while(true) {
+				// find the next prime
+				if(isPrime(counter)) {
+					thePrime = counter;
+					break;
+				}
+				counter++;
+			}
+		}
+		return thePrime;
+	}
+	
+	public static boolean isPrime(int num) {
+		for(int i = 2; i < num; i++) {
+			if(num % i == 0) {
+				return false;
+			}
+		}
+		return true;
 	}
 // QUESTION-----------------------------------------------------------------------------------
 	/**
